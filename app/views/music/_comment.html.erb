@@ -1,0 +1,7 @@
+<p class="comment">
+		<span class="user_name"><%= "#{comment.user.login} says:" %></span>
+		<span class="comment_date"><%= comment.created_at.strftime "%d.%m.%y, %H:%M"%></span>
+		  <br/>
+		  <br/>
+		<span class="comment_text"><%= insert_hyperlinks_and_br(comment.comment_text, "link")%></span><br/>
+</p>

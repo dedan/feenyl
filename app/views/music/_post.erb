@@ -1,0 +1,40 @@
+
+
+<tr>
+  
+  <td align="left">
+	 <b><%= h post.user.login %></b>
+  </td>
+  
+  <td>
+	 <span class="comment_date"><%= h(post.created_at.strftime("%d.%m.%y, %H:%M") )%></span>
+  </td>
+</tr>
+<tr>
+  
+  <td>
+	 <%= link_to limit_to(45, "#{post.artist} - #{post.song}"), 
+		{:action => "show_comments", :id => post.id}, 
+		:class => "comment_link" %>
+  </td>
+  
+  
+  <td>	
+	 <%= "<div id=\"star-ratings-block-#{post.id}\""%>
+	 <%= render :partial => "rating/rating", :locals => { :asset => post } %>
+	 <%= "</div>" %>	
+  </td>
+  
+</tr>  
+
+<tr>
+  <td colspan="5" class="comments">
+	 <p class="comment_small">
+		<% for c in post.comments.reverse[0..2] %>			
+		  <span class="user_name"><%= c.user.login %></span>: 
+		  <span class="comment_text"><%= limit_to(50, c.comment_text)%></span><br/>
+		<% end %>
+		<%= link_to "(add comment)",  {:action => "add_comment", :id => post.id}, :class => "link_light" %>
+	 </p>
+  </td>
+</tr>

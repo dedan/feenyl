@@ -1,0 +1,27 @@
+
+
+<% if @users.empty? %>
+  
+  <strong>No one is lazy !!!</strong>
+  <br/>
+<% else %>
+
+  <table id="tagtable">
+		<thead>
+			<tr>
+				<td>This lazy guys have been notified</td>
+			</tr>
+		</thead>
+		<tbody>
+			 <% @users.each do |u| %>
+			 <tr>
+				  <td><%= u.login %></td>
+			  </tr>
+		<% end %>
+		</tbody>
+  </table>
+<% end %>
+
+<br/>
+
+<%= link_to "go back", :action => "index"%>

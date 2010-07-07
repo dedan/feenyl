@@ -1,0 +1,21 @@
+<!-- form to edit basic id3 tag information -->
+You can use this form to set / correct the basic id3 information.<br/>
+Anyway, files should be tagged with external editor.
+<% #local_filename = params["local_filename"] %>
+<% form_tag "update_tag" do%>
+<input type="hidden" id="original_name" name="original_name" value="<%= @original_name%>"/>
+<p><label for="tag_artist">Artist</label><br/>
+<%= text_field :tag, :artist %></p>
+<p><label for="tag_title">Title</label><br/>
+<%= text_field :tag, :title %></p>
+<p><label for="tag_album">Album</label><br/>
+<%= text_field :tag, :album %></p>
+<p><label for="tag_comment">Comment</label><br/>
+<%= text_area(:tag, :comment, :rows => 20, :cols => 40)%></p>
+<div class="buttongroup2">
+<%= image_link "icon_cancel_64.png","discard changes<br\>and go back",
+					"/music/upload_file?original_name=#{@original_name}","button"%>
+<%= submit_button_tag "save changes","icon_ok_64.png"%>
+</div>				
+<% end %>
+<div style="clear:both"/>

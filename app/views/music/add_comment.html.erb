@@ -1,0 +1,11 @@
+
+<%= error_messages_for "comment"%>
+
+<p><%= "Adding comments for \"#{@post.artist} - #{@post.song}\""%></p>
+
+<% form_tag :action => "post_comment", :id => params[:id] do %>
+   <p>
+		  <%= text_area_tag "comment_text", nil, :size => "50x10" %>
+	</p>
+    <%= submit_button_tag "post comment", "icon_ok_64.png"%>
+<% end %>

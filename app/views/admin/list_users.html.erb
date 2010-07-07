@@ -1,0 +1,43 @@
+<% if logged_in? %>
+	 <% if authorized? %>
+
+		  <h2>Listing users</h2>
+		  <%= @bla %>
+		  <%= link_to "all", :action => "list_users", :unauthorized => "no"%> |
+		  <%= link_to "unauthorized only", :action => "list_users", :unauthorized => "yes"%>
+		  <% form_tag :action => "authorize_users" do%>
+			  <table id="tagtable">
+				  <thead>
+					  <tr>
+						  <td>login name</td>
+						  <td>authorize user ?</td>
+						  <td>delete user ?</td>
+					  </tr>
+				  </thead>
+				  <tbody>
+				  <% i = 1 %>
+				  <% @users.each do |@u| %>
+					 <% unless @u.is_admin? %>
+						 <tr>
+							 <td><%= "#{i}: #{@u.login}" %></td>
+							 <td><%= check_box "u[]", "activated" %></td>
+							 <td>
+								  <%= link_to "x", {:action => "delete_user", :id => @u.id}, :confirm => "Are you sure?" %>
+							 </td>
+						 </tr>
+					 <% end %>
+					 <% i += 1 unless @u.is_admin? %>
+				  <% end %>
+				  </tbody>
+			  </table>
+			  <%= submit_button_tag 'authorize selected users','icon_ok_64.png'%>
+			<% end %>  
+			<%= link_to "go back", :action => "index"%>
+	 <% else %>
+		  <p>you are not an authorized user</p>
+	 	  <p> please log in as admin </p>
+	 <%end%>
+  <% else %>
+	  <p> please log in as admin </p>
+	  <%= link_to "login", '/login'%>
+  <% end %>

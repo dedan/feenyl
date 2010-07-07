@@ -1,0 +1,29 @@
+<!--<%= number_with_precision(asset.rating, 1) %>/5 Stars<br>-->
+
+<div class="star_container">
+  
+  <div class="rate_marker">
+	 <% if not current_user.has_rated_for(asset.id) %>
+		<%= image_tag "ratenow_arrow.gif"%>
+	 <% end  %>
+  </div>
+  
+  <div class="stars_div">
+	 <ul class='star-rating'>
+		<li class='current-rating' style='width:<%= (asset.rating * 2 * 15).to_i -%>px;'>
+		  Currently <%= number_with_precision(asset.rating * 2, 1) %>/5 Stars. 
+		</li>
+				
+		<% 1.upto(10) do |i| %>
+		  <li>
+			 <%= link_to_remote( "#{i}", {:url => { :controller => "rating", 
+					 :action => "rate", :id => asset.id, :rating => i}},
+				:class => "#{to_word(i)}-stars", :name => "#{i} star out of 5") %>
+		  </li>
+		
+		<% end %>
+			 
+			 
+	 </ul>
+  </div>
+</div>

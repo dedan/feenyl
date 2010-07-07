@@ -1,0 +1,8 @@
+page.replace_html "star-ratings-block-#{@post.id}", 
+						:partial => 'rating/rating', 
+						:locals => { :asset => @post }
+page.replace_html "flash_notice", flash[:notice] 
+flash[:notice] = ""
+page[:flash_notice].visual_effect :highlight,
+                          	  :startcolor => "#ffffff",
+				  :endcolor =>	"#dddddd"

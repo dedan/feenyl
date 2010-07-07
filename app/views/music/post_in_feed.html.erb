@@ -1,0 +1,23 @@
+
+
+<p><%= @tag.title %> has been added to the feed</p>
+
+<p>It is now available at:
+		<a href="/music/feed">
+			Feed
+			<%= image_tag 'feed.png', :width => "15", :height => "15", :alt => "Feed"%>
+		</a> 
+</p>
+
+<p> You are allowed to post again in <%= DAYS_TO_WAIT - days_since_last_post %> days
+
+<br/>
+
+
+<% form_for :user, @user, :url => {:action => "index"} do |f| %>
+
+<p>Do you want us to remind you? <%= f.check_box "remind_me"  %></p>
+
+  <%= submit_tag "go back" %>
+
+<% end%>

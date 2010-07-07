@@ -1,0 +1,22 @@
+
+
+<table id="tagtable">
+	 <thead>
+		 <tr>
+			 <td>login name</td>
+			 <td>activation</td>
+		 </tr>
+	 </thead>
+	 <tbody>
+		  <% @users.each do |u| %>
+		  <tr>
+				<td><%= u.login %></td>
+				<td><%= u.activated ? "activated" : "still deactivated" %></td>
+			</tr>
+	 <% end %>
+	 </tbody>
+</table>
+
+<br/>
+
+<%= link_to "go back", :action => "index"%>

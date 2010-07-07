@@ -1,0 +1,39 @@
+
+<% if no_space?%>
+  
+  <div class="errorExplanation" id="errorExplanation">
+	 <h2>Sorry we have no capacities left at the moment</h2>
+	 <p>
+		 Due to our very small capacities on the "Stammhirn" <br>
+		 we can allow at max 20 Users at the moment  <br>
+		 if you want to change this (by better webspace, own server, etc..) <br>
+		 Please write to <%= mail_to EMAIL, "admin", :encode => "hex" %>
+	 </p>
+	</div>
+
+<% else%>
+
+
+  <%= error_messages_for :user %>
+	<p>
+		  Please choose a name which is known by <br>
+		  Stephan or Jonas  
+	</p>
+  
+  <% form_for :user, :url => users_path do |f| -%>
+  <p><label for="login">Login</label><br/>
+  <%= f.text_field :login %></p>
+
+  <p><label for="email">Email</label><br/>
+  <%= f.text_field :email %></p>
+
+  <p><label for="password">Password</label><br/>
+  <%= f.password_field :password %></p>
+
+  <p><label for="password_confirmation">Confirm Password</label><br/>
+  <%= f.password_field :password_confirmation %></p>
+
+  <%= submit_button_tag '','icon_sign_up.png' %>
+  <% end -%>
+
+<%end%>

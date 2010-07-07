@@ -1,0 +1,16 @@
+<% if current_user.activated %>
+
+  All Songs <%= "(#{@posts.size})"%>
+  <br/>
+  <p>
+	 sort by:
+	 <%= link_to "date",		 {:action => "all_posts", :sort => "created_at"}, :class => @active_sort[0] %> - 
+	 <%= link_to "rating",	 {:action => "all_posts", :sort => "rating"},	  :class => @active_sort[1] %> - 
+	 <%= link_to "user",		 {:action => "all_posts", :sort => "user_id"},	  :class => @active_sort[2] %>
+  </p>
+  <table class="lastposts">
+  
+	 <%= render :partial => "post", :collection => @posts %>
+  
+  </table>
+<% end %>

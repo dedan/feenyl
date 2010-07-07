@@ -1,0 +1,298 @@
+body {
+    background-color: #ffffff;	
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;	
+}
+
+a {
+    text-decoration: none;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    color: #3b65de;
+}
+
+a.link {
+    
+    font-size: small;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    color: #000000;
+    background-color: #cccccc;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+
+a.link:hover {
+    
+    color: #660000;
+    background-color: #cccccc;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+
+a img {
+    border: 0px none;
+}
+
+a.act_not_sort {
+    text-decoration: none;
+    
+}
+
+a.act_sort {
+    text-decoration: underline;
+}
+
+a.link_light {
+    font-size: smaller;
+    color: #666666;
+}
+
+a.link_light:hover {
+    background-color: #aaaaaa;
+}
+
+
+a.comment_link {
+    font-size: small;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: black; 
+}
+
+a.comment_link:hover {
+    background-color: #aaaaaa;
+}
+
+#header {
+    background-color: #dddddd;
+    border: 1.3px solid #cccccc;  
+    padding: 0px 20px;
+    width: 600px;
+    margin: auto auto 5px auto;
+    text-align: left;		
+}
+
+
+#header h1 {
+    margin: 10px 0px 0px 0px;
+}
+
+#header h1 a {
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+}
+
+#logo {
+    text-align: center;
+}
+
+#submit {
+    margin-top: 40px;
+}
+
+#content {
+    background-color: #dddddd;
+    border: 1.5px solid #cccccc; 
+    padding: 20px;
+    width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+#content h1 {
+    margin-bottom: 25px;
+}
+
+table.lastposts {
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    background-color: #cccccc;
+    font-size: small;
+    border: 1px solid #bbbbbb;	
+    text-align: left;
+}
+
+table.lastposts tr.comment {
+    font-size: smaller;
+    padding-left: 2em;
+}
+
+td.comments {
+    padding-left: 2em;		  
+    border-bottom: 1px dashed #aaaaaa;	
+}
+
+p.comment_small {
+    font-size: smaller;
+    text-align: left;
+    
+}
+
+p.comment {
+    font-size: smaller;
+    text-align: left;
+    border-top-style: dotted;
+    border-bottom-style: dotted;
+    border-left-style: dotted;
+    border-right-style: dotted;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    background-color: #dddddd;
+    
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+
+p.explain {
+    
+    color: #333333;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+}
+
+.comment_text {
+    /*    background-color: #dddddf;*/
+    /*    border: 1px solid #cccccc;*/
+    
+    font-style: italic;
+}
+
+p.comment .user_name {
+    font-weight: bold;
+}
+
+p.comment_small .user_name {
+    font-weight: bold;
+}
+
+
+.comment_date {
+    color: #60606b;
+    font-size: x-small;
+    text-align: right;
+    float: right;
+}
+
+p.comment .date {
+    color: blue;
+    font-size: x-small;	
+}
+
+
+#long_text {
+    text-align: left;
+}
+
+#long_text p{
+    text-align: left;
+}
+
+#tagtable {
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    background-color: #cccccc;
+    font-size: small;
+    border: 1px solid #bbbbbb;
+}
+
+#tagtable td {
+    text-align: left;
+}
+
+#tagtable thead td {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+td.header {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+td.data {
+    width: 80%;
+}
+
+div.buttongroup2 {
+    width: auto;
+    margin-left: 15.5%;
+    padding: 8px;
+    text-align: center;
+}
+
+div.buttongroup3 {
+    width: auto;
+    margin-left: 7.5%;
+    padding: 8px;
+    text-align: center;
+}
+
+button {
+    width: 153px;
+    padding: 5px;
+    font-size: small;
+    font-weight: bold;
+    color: black;
+    border: 1px solid #dddddd;
+    margin: auto;
+    background-color: #dddddd;
+}
+
+button:hover {
+    background-color: #cccccc;
+    border: 1px solid #bbbbbb;
+}
+
+div.button {	
+    float: left;
+    width: 153px;
+    padding: 5px;
+    font-size: small;
+    font-weight: bold;
+    color: black;
+    border: 1px solid #dddddd;
+    margin: auto;
+}
+
+div.button:hover {
+    background-color: #cccccc;
+    border: 1px solid #bbbbbb;
+}
+
+
+
+
+#flash_notice {
+    color: #ff6600;
+    font-weight: bold;
+}
+
+.user_input {
+    font-weight: bold;
+    background-color: #cccccc;
+    border: 1px solid #bbbbbb;
+    padding: 10px;
+    margin: auto;
+    width: 250px;
+}
+
+
