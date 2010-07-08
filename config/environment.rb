@@ -7,31 +7,30 @@
 ENV['RAILS_ENV'] ||= 'development'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
+# RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
 
 # MusicShare Constants
 
-EMAIL			= 'feenyl@gmail.com'
-MAX_USERS	= 20
-DAYS_TO_REMEMBER = 20			  #you are a lazy user after 20 days
-MAX_FILESIZE	  = 10000 * 1024
-URL				  = "http://diewg.isa-geek.net:8080"
-URL_NEW			  = "http://feenyl.servemp3.com/"
+EMAIL             = 'feenyl@gmail.com'
+MAX_USERS         = 20
+DAYS_TO_REMEMBER  = 20       #you are a lazy user after 20 days
+MAX_FILESIZE      = 10000 * 1024
+URL               = "http://feenyl.wrfl.de"
 
 
 if ENV['RAILS_ENV'] == 'production'
-  ENCLOSURE_PATH = "/htdocs/musicshare/rails/public/feed/uploaded/"
-  REMOVE_REWRITE = "/htdocs/musicshare/rails/public"
-  DIGEST			= "/var/safe/digest_passwd"
-  FEED_PATH	   = "/htdocs/musicshare/rails/public/feed/rss.xml"
-  DAYS_TO_WAIT   = 7
-	 
+  ENCLOSURE_PATH  = "/htdocs/musicshare/rails/public/feed/uploaded/"
+  REMOVE_REWRITE  = "/htdocs/musicshare/rails/public"
+  DIGEST          = "/var/safe/digest_passwd"
+  FEED_PATH       = "/htdocs/musicshare/rails/public/feed/rss.xml"
+  DAYS_TO_WAIT    = 7
+   
 else
-  ENCLOSURE_PATH = "public/feed/uploaded/"
-  REMOVE_REWRITE = ""
-  DIGEST			= "safe/digest_passwd"
-  FEED_PATH		= "public/feed/rss.xml"
-  DAYS_TO_WAIT   = 0
+  ENCLOSURE_PATH  = "public/feed/uploaded/"
+  REMOVE_REWRITE  = ""
+  DIGEST          = "safe/digest_passwd"
+  FEED_PATH       = "public/feed/rss.xml"
+  DAYS_TO_WAIT    = 0
 end
 
 # Bootstrap the Rails environment, frameworks, and default configuration
