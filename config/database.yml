@@ -29,9 +29,9 @@ test:
   host: localhost
 
 production:
-  adapter: mysql
-  socket: /var/run/mysql/mysql.sock
-  database: musicshare_production
-  username: root
-  password: sqlhugendubel123
+  adapter: postgresql 
+  database: feenyl 
+  username: feenyl
+  password: feenyluat235
   host: localhost
+  timeout: 5000
