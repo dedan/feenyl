@@ -77,7 +77,7 @@ class AdminController < ApplicationController
   
   def list_users    
     if params["unauthorized"] == "yes"
-      @users = User.find(:all, :conditions => "activated = 0") 
+      @users = User.find(:all, :conditions => "activated = false") 
     else
       @users = User.find(:all)  
     end
