@@ -1,1 +1,3 @@
-log/*
+log/production.log
+log/development.log
+*.log
