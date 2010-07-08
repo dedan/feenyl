@@ -21,7 +21,7 @@ URL               = "http://feenyl.wrfl.de"
 if ENV['RAILS_ENV'] == 'production'
   ENCLOSURE_PATH  = "/htdocs/musicshare/rails/public/feed/uploaded/"
   REMOVE_REWRITE  = "/htdocs/musicshare/rails/public"
-  DIGEST          = "/var/safe/digest_passwd"
+  DIGEST          = "safe/digest_passwd"
   FEED_PATH       = "/htdocs/musicshare/rails/public/feed/rss.xml"
   DAYS_TO_WAIT    = 7
    
