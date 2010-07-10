@@ -1,4 +1,4 @@
-<% unless @users.nil?%>
+<% unless @users.empty?%>
     <% @users.each do |user|%>
         <%= user.login%> has been reminded
     <% end %>

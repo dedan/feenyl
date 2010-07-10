@@ -12,7 +12,7 @@ class AdminController < ApplicationController
   def remind_users
    if params[:name] == "admin" and params[:pass] == "hugendubel"
    
-    @users = User.find(:all, :conditions => "remind_me = true")
+    @users = User.find(:all, :conditions => "remind_me = true and reminded = false")
     @users.each do |user|  
       if (user.reminded == false) and 
         (!user.last_post.nil?) and
