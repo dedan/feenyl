@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   # username validation (we get problems with apostroph and stuff in the
   # digest) TODO geht leider noch nicht, mann muss da irgendwas mit unicode
   # codepoint bla bla machen
-   validates_format_of :login, :with		 => /[:word:]/,
+   validates_format_of :login, :with		 => /[a-zA-Z0-9]+/,
     :message  => 'please use only letters and numbers in your name'
   
   # email validation
