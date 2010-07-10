@@ -15,10 +15,10 @@ EMAIL             = 'feenyl@wrfl.de'
 MAX_USERS         = 20
 DAYS_TO_REMEMBER  = 20       #you are a lazy user after 20 days
 MAX_FILESIZE      = 50000 * 1024
-URL               = "http://feenyl.wrfl.de"
 
 
 if ENV['RAILS_ENV'] == 'production'
+  URL             = "http://feenyl.wrfl.de"
   ENCLOSURE_PATH  = "/var/www/feenyl/rails/public/feed/uploaded/"
   REMOVE_REWRITE  = "/var/www/feenyl/rails/public"
   DIGEST          = "/var/safe/digest_passwd"
@@ -26,6 +26,7 @@ if ENV['RAILS_ENV'] == 'production'
   DAYS_TO_WAIT    = 7
 
 else
+  URL             = "localhost:3000"
   ENCLOSURE_PATH  = "public/feed/uploaded/"
   REMOVE_REWRITE  = ""
   DIGEST          = "safe/digest_passwd"
