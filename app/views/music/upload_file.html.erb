@@ -13,26 +13,28 @@
   <%= filename[0..20] %>
 </div>
 <br/>
-<p>ID3 info says that this is:</p>
-<p>
-  <table id="tagtable">
-	 <tr><td class="header">Artist</td><td class="data"><%= @tag.artist %></td></tr>
-	 <tr><td class="header">Title</td><td class="data"><%= @tag.title %></td></tr>
-	 <tr><td class="header">Album</td><td class="data"><%= @tag.album %></td></tr>
-	 <tr><td class="header">Category</td><td class="data"><%= params[:category]  %></td></tr>
-	 <tr><td class="header">Comment</td><td class="data">
-		  <%= @tag.comment.nil? ? "! comment missing !" : @tag.comment   %>
-	 </td></tr>
-  </table>
-</p>
-<p>
-  Please make sure this information is correct and don't forget <br/>
-  to write a comment before posting the tune.
-</p>
-<div class="buttongroup3">
-  <%= image_link "icon_ok_64.png","post tune","/music/post_in_feed?original_name=#{@original_name}","button"%>
-  <%= image_link "icon_edit_64.png","edit ID3 data","/music/edit_tag?original_name=#{@original_name}","button"%>
-  <%= image_link "icon_return_64.png","go back","/music/index?delete_file=true","button"%>
-</div>
-<div style="clear:both"/>
 
+<!-- form to edit basic id3 tag information -->
+<p>
+  Please make sure this information is correct and <b>don't forget <br/>
+  to write a comment before posting the tune.</b>
+</p>
+
+<% form_tag "post_in_feed" do%>
+<input type="hidden" id="original_name" name="original_name" value="<%= @original_name%>"/>
+<p><label for="tag_artist">Artist</label><br/>
+<%= text_field :tag, :artist %></p>
+<p><label for="tag_title">Title</label><br/>
+<%= text_field :tag, :title %></p>
+<p><label for="tag_album">Album</label><br/>
+<%= text_field :tag, :album %></p>
+<p><label for="tag_comment">Comment</label><br/>
+<%= text_area(:tag, :comment, :rows => 20, :cols => 40)%></p>
+<div class="buttongroup2">
+    <%= submit_button_tag "post to feed","icon_ok_64.png"%>
+    <%= image_link "icon_cancel_64.png","go back<br\>and delete file",
+					"/music/index?delete_file=true","button"%>
+
+</div>				
+<% end %>
+<div style="clear:both"/>

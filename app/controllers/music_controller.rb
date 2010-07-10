@@ -90,9 +90,14 @@ class MusicController < ApplicationController
   
   # post the new file in the feed (save to DB)
   def post_in_feed
-   
-    # tagobjekt von temporaerem dateiname erzeugen
-    @tag = ID3Lib::Tag.new(tmp_filename)   
+    # update tag
+    @tag = ID3Lib::Tag.new(tmp_filename)
+    @tag.artist  = params["tag"]["artist"]
+    @tag.album   = params["tag"]["album"]
+    @tag.title   = params["tag"]["title"]
+    @tag.comment = params["tag"]["comment"]
+    @tag.update!
+    
     # neuen, endgueltigen dateinamen bestimmen
     new_filename = get_filename(@tag.artist, @tag.title)
    
@@ -150,28 +155,6 @@ class MusicController < ApplicationController
      
   end
   
-  
-  # edit the id3 tags
-  def edit_tag
-    
-    # einfach originalname und tagobjekt rausgeben
-    @original_name  = params[:original_name]
-    @tag = ID3Lib::Tag.new(tmp_filename)
-  end
-  
-  
-  # save the edited tag data to mp3 file and go back to upload form
-  def update_tag
-    tag = ID3Lib::Tag.new(tmp_filename)
-    tag.artist  = params["tag"]["artist"]
-    tag.album   = params["tag"]["album"]
-    tag.title   = params["tag"]["title"]
-    tag.comment = params["tag"]["comment"]
-    tag.update!
-    flash[:notice] = "tag info updated"
-    redirect_to :action => "upload_file", :original_name => params["original_name"]
-  end
-
   
   # save uploaded file to disk
   def upload_file
