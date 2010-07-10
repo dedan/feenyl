@@ -11,7 +11,7 @@ ENV['RAILS_ENV'] ||= 'production'
 
 # MusicShare Constants
 
-EMAIL             = 'feenyl@gmail.com'
+EMAIL             = 'feenyl@wrfl.de'
 MAX_USERS         = 20
 DAYS_TO_REMEMBER  = 20       #you are a lazy user after 20 days
 MAX_FILESIZE      = 10000 * 1024
@@ -24,7 +24,7 @@ if ENV['RAILS_ENV'] == 'production'
   DIGEST          = "/var/safe/digest_passwd"
   FEED_PATH       = "/var/www/feenyl/rails/public/feed/rss.xml"
   DAYS_TO_WAIT    = 7
-   
+
 else
   ENCLOSURE_PATH  = "public/feed/uploaded/"
   REMOVE_REWRITE  = ""
@@ -72,16 +72,11 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 end
 
-ActionMailer::Base.delivery_method = :smtp
 
-ActionMailer::Base.smtp_settings = {
-  :address => "smtp.gmail.com",
-  :port => 587,
-  :domain => "localhost",
-  :authentication => :plain,
-  :user_name => "feenyl",
-  :password => "hugendubel"
-}
+ActionMailer::Base.delivery_method = :sendmail
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.raise_delivery_errors = true
+ActionMailer::Base.default_charset = "utf-8"
 
 
 
