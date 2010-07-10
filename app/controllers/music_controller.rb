@@ -115,7 +115,7 @@ class MusicController < ApplicationController
       })
                        
     if @post.save
-      if File.rename(tmp_filename, new_filename)
+      if File.rename(tmp_filename, new_filename) and File.chmod(0644, new_filename)
      
         # wenn speichern klappt und datei auch umbenennt werden kann
         # leg auch gleich noch ein neues, erstes kommentar fuer den post an
