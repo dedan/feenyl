@@ -6,7 +6,15 @@ class MusicController < ApplicationController
   before_filter :login_required, :except => ['rss','index']
   
   
-  
+  # link to the feed and short explanation
+  def feed
+  end
+
+  # show the feed explanation and help page
+  def feed_explanation
+  end
+
+
   # index page which is showing the post of the last seven days
   def index 
     
@@ -26,19 +34,12 @@ class MusicController < ApplicationController
     end
     
     # such die posts der letzten sieben tage raus
-   @posts = Post.find(:all, :conditions => ['created_at > ?', Date.today - 14.days] ,:order => "created_at DESC")
-  #@posts = Post.find(:all,:order => "created_at DESC")
+    @posts = Post.find(:all, :conditions => ['created_at > ?', Date.today - 14.days] ,:order => "created_at DESC")
+    #@posts = Post.find(:all,:order => "created_at DESC")
     params[:id] = current_user.id
   end
-    
-  # link to the feed and short explanation
-  def feed	 
-  end
-  
-  # show the feed explanation and help page
-  def feed_explanation
-  end
-  
+
+
   # show a page with all posts
   def all_posts
     # alle posts mit gewuenschter sortierung aus der DB holen
@@ -91,10 +92,10 @@ class MusicController < ApplicationController
   def post_in_feed
    
     # tagobjekt von temporaerem dateiname erzeugen
-    @tag = ID3Lib::Tag.new(tmp_filename)	 
+    @tag = ID3Lib::Tag.new(tmp_filename)   
     # neuen, endgueltigen dateinamen bestimmen
     new_filename = get_filename(@tag.artist, @tag.title)
-	 
+   
     # store the post in database
     # bis jetzt wurden die informationen im tag der datei mitgefuehrt
     @post = Post.create({
@@ -110,7 +111,7 @@ class MusicController < ApplicationController
                        
     if @post.save
       if File.rename(tmp_filename, new_filename)
-		 
+     
         # wenn speichern klappt und datei auch umbenennt werden kann
         # leg auch gleich noch ein neues, erstes kommentar fuer den post an
         Comment.new(
@@ -130,8 +131,8 @@ class MusicController < ApplicationController
         )
         @rating.save
 
-	@user  = current_user
-	  
+        @user  = current_user
+
         # create the new feed
         Post.make_rss
 
@@ -146,7 +147,7 @@ class MusicController < ApplicationController
       @original_name = params["original_name"]
       render :action => "upload_file"
     end
-	   
+     
   end
   
   
@@ -166,12 +167,6 @@ class MusicController < ApplicationController
     tag.album   = params["tag"]["album"]
     tag.title   = params["tag"]["title"]
     tag.comment = params["tag"]["comment"]
-    
-    # TODO das muss noch getestet werden
-    # es soll die kategorie hinzugefuegt werden
-    logger.debug("yeah, output: #{params["tag"]["cat_id"]}")
-    tag << {:id => :RATT, :text => params["tag"]["cat_id"]}
-    
     tag.update!
     flash[:notice] = "tag info updated"
     redirect_to :action => "upload_file", :original_name => params["original_name"]
@@ -180,27 +175,29 @@ class MusicController < ApplicationController
   
   # save uploaded file to disk
   def upload_file
-	 
+   
     # remember the filename
     tempfile = params["file_to_upload"]
 
     # wenn ich keinen string bekommen habe und auch ueberhaupt was ankam (kein tag_edit)
     unless tempfile.nil?
+      
+      # if just a string arrived
       if tempfile.instance_of?(String)
-	   
         flash[:notice] = "please select a valid file"
         redirect_to :action => "index"
-		  
-      # wenn ich ein file erhalten habe
-      elsif tempfile.instance_of?(ActionController::UploadedTempfile)
-				
-        # File loeschen wenn es zu gross war
+      
+      # when a file arrived
+      elsif tempfile.instance_of?(Tempfile)
+        
+        # delete file if too big
         if File.size?(tempfile) > MAX_FILESIZE
           File.delete(tempfile.local_path)
           flash[:notice] = "File too large (maximal 10 MB allowed)"
           redirect_to :action => "index"
+
+        # if it is a valid mp3
         elsif tempfile.original_filename.ends_with?(".mp3")
-				  
           # save variable for view
           @original_name = tempfile.original_filename
           # read id3 information
@@ -208,7 +205,7 @@ class MusicController < ApplicationController
           # copy the file to the upload directory
           FileUtils.copy(params[:file_to_upload].local_path, tmp_filename)
           logger.info("new file from #{current_user.login} copied to : #{tmp_filename}")
-          
+
           # TODO bild auslesen funktioniert noch nicht
           #          unless @tag.frame(:APIC)[:data].nil? and false
           #            image = File.open("#{ENCLOSURE_PATH}#{current_user.login}_cover.png", "w")
@@ -216,12 +213,11 @@ class MusicController < ApplicationController
           #            image.close
           #            params["cover"] = :true
           #          end
-      
+
           flash[:notice] = "File Uploaded"
         else 
           flash[:notice] = "This file is no mp3 file"
           redirect_to :action => "index"
-
         end
       end
     else
@@ -229,12 +225,10 @@ class MusicController < ApplicationController
       # hier komme ich hin, wenn nichts hochgeladen wurde, sondern der tag editiert
       @original_name = params["original_name"]
       @tag = ID3Lib::Tag.new(tmp_filename)
-
-      # TODO hier auch die category mit rausgeben params['category']
     end
   end
-  		
-		  
+      
+      
   private
 
   # built filename out of artist and songtitel
