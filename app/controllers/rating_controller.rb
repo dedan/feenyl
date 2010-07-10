@@ -16,6 +16,8 @@ class RatingController < ApplicationController
       )
       @rating.save
       @post.save
+    elsif @post.user_id == current_user.id 
+      flash[:notice] = "You are not allowed to rate your own post!"
     else
       flash[:notice] = "You've allready rated (mööp)"
     end
