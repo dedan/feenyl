@@ -2,3 +2,4 @@ log/production.log
 log/development.log
 *.log
 tmp
+public/feed/*
