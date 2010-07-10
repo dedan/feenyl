@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   # method to make the user an htacces user, will be calle after activation
   def make_htaccess_users
     File.open(DIGEST, "a") do |df|
-      df.print("#{login}:music:#{digest}\n")
+      df.print("#{login}:#{digest}\n")
     end
   end
 
@@ -159,8 +159,9 @@ class User < ActiveRecord::Base
   def encrypt_password
     return if password.blank?
     # save also digest for later use in make_htacces_user
-    self.digest	  = Digest::MD5.hexdigest("#{login}:music:#{password}")
     self.salt	  = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+    #    self.digest	  = Digest::MD5.hexdigest("#{login}:music:#{password}")
+    self.digest  = password.crypt(self.salt[0..1])
     self.crypted_password = encrypt(password)
   end
       
