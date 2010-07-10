@@ -1,6 +1,9 @@
+<% unless @users.nil?%>
+    <% @users.each do |user|%>
+        <%= user.login%> has been reminded
+    <% end %>
 
-<% @users.each do |user|%>
-   <%= user.login%> has been reminded
+    SUCCESS
+<% else %>
+    NOTHINGTOREMIND
 <% end %>
-
-SUCCESS
