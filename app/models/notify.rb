@@ -1,5 +1,4 @@
 class Notify < ActionMailer::Base
-  default :from => "feenyl@wrfl.de"
 
   def signup(user)
     @subject    = 'Feenyl Signup'
