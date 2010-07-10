@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
 	 link = URL
 	 #link = "0.0.0.0:3000"
 	 description = "recommend Music and share it with your friends"
-	 ada = "http://diewg.isa-geek.net/wiki/images/ada.jpg"
+	 ada = "http://feenyl.wrfl.de/images/ada.jpg"
    
     rss = RSS::Rss.new("2.0")
     channel = RSS::Rss::Channel.new
@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
     channel.link = link
     channel.language = "en-uk"
     channel.copyright = "Copyright #{Date.today.year} JonSte"
-    channel.lastBuildDate = Post.last_post.created_at
+    channel.lastBuildDate = Post.last_post.created_at unless Post.last_post.nil?
 
     channel.image = RSS::Rss::Channel::Image.new
     channel.image.url = ada
