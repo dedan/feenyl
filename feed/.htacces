@@ -1,4 +1,0 @@
-AuthType Digest
-AuthName "Secure MusicShareFeed"
-AuthDigestFile /var/safe/digest_passwd
-Require valid-user
