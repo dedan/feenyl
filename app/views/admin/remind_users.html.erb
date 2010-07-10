@@ -1,9 +1,13 @@
-<% unless @users.empty?%>
-    <% @users.each do |user|%>
-        <%= user.login%> has been reminded
-    <% end %>
-
-    SUCCESS
+<% if @users.nil? %>
+    not authorized
 <% else %>
-    NOTHINGTOREMIND
+    <% unless @users.empty?%>
+        <% @users.each do |user|%>
+            <%= user.login%> has been reminded
+        <% end %>
+
+        SUCCESS
+    <% else %>
+        NOTHINGTOREMIND
+    <% end %>
 <% end %>

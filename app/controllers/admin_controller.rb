@@ -2,27 +2,25 @@ class AdminController < ApplicationController
 
   layout "music"
 
-
-
   def index
     #redirect_to :action => "list_unauthorized_users"
   end
 
 
   def remind_users
-   if params[:name] == "admin" and params[:pass] == "hugendubel"
-   
-    @users = User.find(:all, :conditions => "remind_me = true and reminded = false")
-    @users.each do |user|  
-      if (user.reminded == false) and 
-        (!user.last_post.nil?) and
-        (Date.today - user.last_post >= DAYS_TO_WAIT)
+    if params[:name] == "admin" and params[:pass] == "hugendubel"
+      
+      @users = User.find(:all, :conditions => "remind_me = true and reminded = false")
+      @users.each do |user|  
+        if (user.reminded == false) and (!user.last_post.nil?) and (Date.today - user.last_post >= DAYS_TO_WAIT)
           Thread.new(user){|u| Notify.deliver_weekly_reminder(u)} 
           user.reminded = true
           user.save
-      end   
+        end   
+      end
+    else
+      @users = nil
     end
-   end
   end
   
   # TODO check whether admin (has to work with crone job)
