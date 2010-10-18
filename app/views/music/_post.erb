@@ -35,7 +35,7 @@
 		  <span class="user_name"><%= c.user.login %></span>: 
 		  <span class="comment_text"><%= limit_to(50, c.comment_text)%></span><br/>
 		<% end %>
-		<%= link_to "(add comment)",  {:action => "add_comment", :id => post.id}, :class => "link_light" %>
+		<%= link_to "(add comment)",  new_comment_path(:id => post.id), :class => "link_light" %>
 	 </p>
   </td>
 </tr>
