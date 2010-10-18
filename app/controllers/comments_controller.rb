@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :find_post
+  before_filter :login_required
   layout "music"
 
   def show
