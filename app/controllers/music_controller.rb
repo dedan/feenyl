@@ -17,6 +17,7 @@ class MusicController < ApplicationController
 
   # index page which is showing the post of the last seven days
   def index 
+    if not current_user.nil? and current_user != :false
     
     # wenn ich von post_in_feed komme das remind_me neu setzen das ist die
     # erinnerung nach ablauf der 7 tages frist
@@ -26,17 +27,22 @@ class MusicController < ApplicationController
         current_user.reminded  = false
         current_user.save
       end
+
     end
     
     # wenn ich von edit_tag oder aehnlichem komme und abgebrochen wurde
     if params[:delete_file] == "true"
       current_user.delete_unposted_file
     end
+
+    @posts = Post.find(:all,:order => "created_at DESC")
     
-    # such die posts der letzten sieben tage raus
-    @posts = Post.find(:all, :conditions => ['created_at > ?', Date.today - 14.days] ,:order => "created_at DESC")
-    #@posts = Post.find(:all,:order => "created_at DESC")
+    @posts.reject! do |p|
+      current_user.has_rated_for(p.id)
+    end
     params[:id] = current_user.id
+  end
+    
   end
 
 
