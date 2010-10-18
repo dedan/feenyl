@@ -53,40 +53,6 @@ class MusicController < ApplicationController
     ]
   end
   
-  # post a comment for a song
-  def post_comment
-    # neues kommentar anlegen
-    @comment = Comment.new(
-      :post_id => params[:id],
-      :comment_text => params[:comment_text],
-      :user_id => current_user.id
-    )
-    
-    # aktuellen post mit rausgeben
-    @post = Post.find(params[:id])
-    
-    # save comment when no errors occur, otherwise go back to form
-    if @comment.save
-      flash[:notice] = "comment added"
-      redirect_to :action => "index"
-    else
-      render :action => "add_comment", :id => params[:id]
-    end
-  end  
-  
-  
-  # show the comments
-  def show_comments
-    @comments = Comment.find(:all, :conditions => "post_id = #{params[:id]}", :order => "created_at DESC")
-    @post     = Post.find(params[:id])
-  end
-  
-  
-  # add a new comment
-  def add_comment
-    @post = Post.find(params[:id])
-  end
-  
   
   # post the new file in the feed (save to DB)
   def post_in_feed

@@ -1,0 +1,13 @@
+
+<%= error_messages_for "comment"%>
+
+<p><%= "Adding comments for \"#{@comment.post.artist} - #{@comment.post.song}\""%></p>
+
+<% form_for @comment do |f| %>
+    <%= f.text_area :comment_text , :size => "50x10" %>
+    <%= f.hidden_field :post_id %>
+    <%= f.hidden_field :user_id %>
+	</p>
+    <%= f.submit %>
+<% end %>
+
