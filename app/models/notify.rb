@@ -39,5 +39,22 @@ class Notify < ActionMailer::Base
     @from       = EMAIL
     @sent_on    = Time.now
   end
+  
+  def notify_poster(comment)
+    @subject    = "#{comment.user.login} wrote a comment to your post"
+    @body       = {:comment => comment}
+    @recipients = "#{EMAIL}, #{comment.post.user.email}"
+    @from       = EMAIL
+    @sent_on    = Time.now
+  end
+  
+  def notify_commenter(comment, commenter)
+    @subject    = "#{comment.user.login} wrote a comment to a post you commented"
+    @body       = {:comment => comment, :commenter => commenter}
+    @recipients = "#{EMAIL}, #{commenter.email}"
+    @from       = EMAIL
+    @sent_on    = Time.now
+  end
+  
 
 end
