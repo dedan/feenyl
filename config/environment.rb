@@ -14,7 +14,7 @@ ENV['RAILS_ENV'] ||= 'development'
 EMAIL             = 'feenyl@wrfl.de'
 MAX_USERS         = 20
 DAYS_TO_REMEMBER  = 20       #you are a lazy user after 20 days
-MAX_FILESIZE      = 50000 * 1024
+MAX_FILESIZE      = 150000 * 1024
 
 
 if ENV['RAILS_ENV'] == 'production'
