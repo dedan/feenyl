@@ -8,6 +8,7 @@
 	 <%= stylesheet_link_tag("stars")  %>
 	 <%= javascript_include_tag "prototype" %>
 	 <%= javascript_include_tag :defaults %>
+	 <%= auto_discovery_link_tag :rss, formatted_comments_path(:rss) %>
   </head>
   <body>
 	 <div id="main">
@@ -21,14 +22,16 @@
 			 <p><strong>You are logged in as <%=h current_user.login %></strong>
 				<br/>
 				<%= link_to 'home', '/' %> |
-				<%= link_to 'logout', '/logout' %> |
 				<% if current_user.activated%>
 				  <%= link_to "all posts", :action => "all_posts", :sort => "created_at" %> |
 				  <%= link_to "post song", :action => "index", :anchor => 'upload' %> |
-				  <a href="/music/feed">
-					 get the Feed
-					 <%= image_tag 'feed.png', :width => "15", :height => "15", :alt => "Feed"%>
-				  </a> 
+				  <%= link_to "feenyl feed" +  
+				                image_tag('feed.png', :width => "15", :height => "15", :alt => "Feed"),
+				                :action => "feed" %> |
+  				  <%= link_to "comments feed" +  
+  				                image_tag('feed.png', :width => "15", :height => "15", :alt => "Feed"),
+  				                formatted_comments_url(:rss) %> |
+				  <%= link_to 'logout', '/logout' %>
 				<% end %>
 			 </p>
 		  <% else %>
