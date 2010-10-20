@@ -1,4 +1,4 @@
 <p>Comments for: <%= "#{@post.artist} - #{@post.song}" %></p>
 <%= render :partial => "comment", :collection => @comments %>
 
-<%= link_to "Add a Comment", :action => "add_comment", :id => params[:id]%>
+<%= link_to "Add a Comment", new_comment_path(:id => @post.id) %>
