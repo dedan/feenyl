@@ -19,7 +19,7 @@ class Notify < ActionMailer::Base
   def remember(user)
     @subject    = 'Don\'t forget Feenyl'
     @body       = {:user => user}
-    @recipients = "#{EMAIL}, #{user.email}"
+    @recipients = user.email
     @from       = EMAIL
     @sent_on    = Time.now
   end
@@ -35,7 +35,7 @@ class Notify < ActionMailer::Base
   def weekly_reminder(user)
     @subject    = 'Yeah, you are allowed to post again'
     @body       = {:user => user}
-    @recipients = "#{EMAIL}, #{user.email}"
+    @recipients = user.email
     @from       = EMAIL
     @sent_on    = Time.now
   end
@@ -43,7 +43,7 @@ class Notify < ActionMailer::Base
   def notify_poster(comment)
     @subject    = "#{comment.user.login} wrote a comment to your post"
     @body       = {:comment => comment}
-    @recipients = "#{EMAIL}, #{comment.post.user.email}"
+    @recipients = comment.post.user.email
     @from       = EMAIL
     @sent_on    = Time.now
   end
@@ -51,7 +51,7 @@ class Notify < ActionMailer::Base
   def notify_commenter(comment, commenter)
     @subject    = "#{comment.user.login} wrote a comment to a post you commented"
     @body       = {:comment => comment, :commenter => commenter}
-    @recipients = "#{EMAIL}, #{commenter.email}"
+    @recipients = commenter.email
     @from       = EMAIL
     @sent_on    = Time.now
   end
@@ -59,7 +59,7 @@ class Notify < ActionMailer::Base
   def mail_to_all(user, text, subj)
     @subject    = subj
     @body       = {:user => user, :text => text}
-    @recipients = "#{EMAIL}, #{user.email}"
+    @recipients = user.email
     @from       = EMAIL
     @sent_on    = Time.now
   end
