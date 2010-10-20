@@ -133,7 +133,7 @@ class MusicController < ApplicationController
    
     # remember the filename
     tempfile = params["file_to_upload"]
-
+    
     # wenn ich keinen string bekommen habe und auch ueberhaupt was ankam (kein tag_edit)
     unless tempfile.nil?
       
@@ -161,14 +161,6 @@ class MusicController < ApplicationController
           FileUtils.copy(params[:file_to_upload].local_path, tmp_filename)
           logger.info("new file from #{current_user.login} copied to : #{tmp_filename}")
 
-          # TODO bild auslesen funktioniert noch nicht
-          #          unless @tag.frame(:APIC)[:data].nil? and false
-          #            image = File.open("#{ENCLOSURE_PATH}#{current_user.login}_cover.png", "w")
-          #            image.print(@tag.frame(:APIC)[:data])
-          #            image.close
-          #            params["cover"] = :true
-          #          end
-
           flash[:notice] = "File Uploaded"
         else 
           flash[:notice] = "This file is no mp3 file"
@@ -178,8 +170,14 @@ class MusicController < ApplicationController
     else
       
       # hier komme ich hin, wenn nichts hochgeladen wurde, sondern der tag editiert
-      @original_name = params["original_name"]
-      @tag = ID3Lib::Tag.new(tmp_filename)
+      
+      if params["original_name"].nil?
+        flash[:notice] = "No File selected (depp)"
+        redirect_to :action => "index"
+      else        
+        @original_name = params["original_name"]
+        @tag = ID3Lib::Tag.new(tmp_filename)
+      end
     end
   end
       
