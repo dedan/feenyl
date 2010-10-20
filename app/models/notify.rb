@@ -56,5 +56,12 @@ class Notify < ActionMailer::Base
     @sent_on    = Time.now
   end
   
+  def mail_to_all(user, text, subj)
+    @subject    = subj
+    @body       = {:user => user, :text => text}
+    @recipients = "#{EMAIL}, #{user.email}"
+    @from       = EMAIL
+    @sent_on    = Time.now
+  end
 
 end

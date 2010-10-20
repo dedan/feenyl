@@ -4,6 +4,15 @@ class AdminController < ApplicationController
 
   def index
   end
+    
+  def mail_to_all
+    @users = User.find(:all)
+    @users.each do |user| 
+      Notify.deliver_mail_to_all(user, params[:text], params[:subj])
+    end
+    flash[:notice] = "mails sent"
+    redirect_to :action => "index"
+  end
   
   # this is the method to be called from the crone job
   def remind_users

@@ -4,3 +4,13 @@
 <%= link_to "Remind Lazy Users", :action => "lazy_users" %>
 <br/>
 <%= link_to "Activation Stuff", :action => "list_users", :unauthorized => "yes"%>
+<p>
+    Send an email to all users:
+<p>
+    <% form_tag(:action => "mail_to_all") do %>
+      <%= text_field_tag "subj", "", :size => 50 %>
+      <p>
+      <%= text_area_tag "text", nil, :size => "50x10" %>
+      <p>
+      <%= submit_tag "send mail"%>
+    <% end -%>
