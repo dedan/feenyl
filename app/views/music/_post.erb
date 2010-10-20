@@ -14,8 +14,7 @@
   
   <td>
 	 <%= link_to limit_to(45, "#{post.artist} - #{post.song}"), 
-		{:action => "show_comments", :id => post.id}, 
-		:class => "comment_link" %>
+		comment_path(post), :class => "comment_link" %>
 	<%= link_to "(download)", "#{URL}/feed/uploaded/#{File.basename(post.filename)}" %>
   </td>
   
