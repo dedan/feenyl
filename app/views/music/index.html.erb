@@ -1,55 +1,48 @@
 <% if logged_in? %>
   <% if current_user.activated %>
 
-	
-	 <!-- Show last 5 posts -->
+     <table class="lastposts" >
+        <tr><td align="left"><b>News</b></td></tr>
+        <tr><td class="comments">
+            Please rate all Songs with the orange marker..
+        </td></tr>
+     </table>
 
-	 <table class="lastposts" >
-		<tr><td align="left"><b>News</b></td></tr>
-		<tr><td class="comments">
-			Please rate all Songs with the orange marker..
-		</td></tr>  
-	 </table>
+     <p>
+        All your unrated songs: <%= link_to "(show all)", :action => "all_posts", :sort => "created_at" %> 
+     </p>
+     
+     <table class="lastposts" >
+        <%= render :partial => "post", :collection => @posts %>
+     </table>
 
-	 <p>
-		All your unrated songs: <%= link_to "(show all)", :action => "all_posts", :sort => "created_at" %> 
-	 </p>
-	 <table class="lastposts" >
-  
-		<%= render :partial => "post", :collection => @posts %>
-		  
-	 </table>
-
-	 <!-- upload form goes here -->
-	 <% if user_may_post? %>
-		<p id="upload">
-		  <% form_tag({:action => "upload_file"}, {:multipart => true}) do %>
-			 <p><label for="file_to_upload">Please choose the music you want to share this week</label></p>
-			 <p><%= file_field_tag "file_to_upload", :size => 50%></p>
-  
-			 <!-- this could be done with a nice helper function -->
-			 <p>Upload can take some time, please press Button <strong>only 1 time</strong></p>
-  
-			 <%= submit_button_tag "upload!","icon_upload_64.png"%>		
-		  <% end %>
-		</p>
-	 <% else %>
-		<p id="upload"> You are not allowed to post at the moment,
-		  because your last post was <%= days_since_last_post%> days ago. 
-		  <h3>Please come back in <%= DAYS_TO_WAIT - days_since_last_post%> days</h3>
-		</p>
-	 <% end %>
+     <!-- upload form goes here -->
+     <% if user_may_post? %>
+        <p id="upload">
+          <% form_tag({:action => "upload_file"}, {:multipart => true}) do %>
+             <p><label for="file_to_upload">Please choose the music you want to share this week</label></p>
+             <p><%= file_field_tag "file_to_upload", :size => 50%></p>
+             <p>Upload can take some time, please press Button <strong>only 1 time</strong></p>
+             <%= submit_button_tag "upload!","icon_upload_64.png"%>     
+          <% end %>
+        </p>
+     <% else %>
+        <p id="upload"> You are not allowed to post at the moment,
+          because your last post was <%= days_since_last_post%> days ago. 
+          <h3>Please come back in <%= DAYS_TO_WAIT - days_since_last_post%> days</h3>
+        </p>
+     <% end %>
   <% else %>
-	 <p> 
-		<h3> You are not allowed to post at the moment, </h3>
-		<h3>	because you are not authorized yet. </h3>
-	 </p>
+     <p> 
+        <h3> You are not allowed to post at the moment, </h3>
+        <h3>    because you are not authorized yet. </h3>
+     </p>
   <% end %>
 <% else %>
   <p>
-	 This is a page for recommending Music to others.<br>
-	 <br>
-	 If you are new to Feenyl: <%= link_to "Sign Up", 'signup'%> <br>
-	 if you are already registered, please <%= link_to "login", '/login'%>.
+     This is a page for recommending Music to others.<br>
+     <br>
+     If you are new to Feenyl: <%= link_to "Sign Up", 'signup'%> <br>
+     if you are already registered, please <%= link_to "login", '/login'%>.
   </p>
 <% end %>

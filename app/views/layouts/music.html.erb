@@ -25,10 +25,10 @@
 				<% if current_user.activated%>
 				  <%= link_to "all posts", :action => "all_posts", :sort => "created_at" %> |
 				  <%= link_to "post song", :action => "index", :anchor => 'upload' %> |
-				  <%= link_to "feenyl feed" +  
+				  <%= link_to "feenyl feed " +  
 				                image_tag('feed.png', :width => "15", :height => "15", :alt => "Feed"),
 				                :action => "feed" %> |
-  				  <%= link_to "comments feed" +  
+  				  <%= link_to "comments feed " +  
   				                image_tag('feed.png', :width => "15", :height => "15", :alt => "Feed"),
   				                formatted_comments_url(:rss) %> |
 				<% end %>
