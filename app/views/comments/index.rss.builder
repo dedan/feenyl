@@ -12,7 +12,7 @@ xml.rss :version => "2.0" do
         xml.description comment.comment_text
         xml.pubDate comment.created_at.to_s(:rfc822)
         xml.link comment_url(comment.post)
-        xml.guid comment_url(comment.post)
+        xml.guid "#{comment_url(comment.post)}/#{comment.id}"
       end
     end
   end
