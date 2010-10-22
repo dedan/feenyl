@@ -12,7 +12,7 @@ ENV['RAILS_ENV'] ||= 'development'
 # MusicShare Constants
 
 EMAIL             = 'feenyl@wrfl.de'
-MAX_USERS         = 20
+MAX_USERS         = 30
 DAYS_TO_REMEMBER  = 20       #you are a lazy user after 20 days
 MAX_FILESIZE      = 150000 * 1024
 
