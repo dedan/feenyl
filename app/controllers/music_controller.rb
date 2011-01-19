@@ -152,7 +152,7 @@ class MusicController < ApplicationController
           redirect_to :action => "index"
 
         # if it is a valid mp3
-        elsif tempfile.original_filename.ends_with?(".mp3")
+        else
           # save variable for view
           @original_name = tempfile.original_filename
           # read id3 information
@@ -162,9 +162,6 @@ class MusicController < ApplicationController
           logger.info("new file from #{current_user.login} copied to : #{tmp_filename}")
 
           flash[:notice] = "File Uploaded"
-        else 
-          flash[:notice] = "This file is no mp3 file"
-          redirect_to :action => "index"
         end
       end
     else
